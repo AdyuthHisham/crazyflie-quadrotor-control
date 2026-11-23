@@ -1,0 +1,32 @@
+{
+  "B_scale_that_reproduces_report": {
+    "max_abs_diff": 7.674484178119348e-05,
+    "roll_pitch": 0.790356281029128,
+    "yaw": 0.8001082955954831
+  },
+  "K_from_eq18_row1": [
+    -0.0224,
+    -0.0089,
+    -0.0332,
+    -0.0132,
+    -0.0569
+  ],
+  "K_report_row1": [
+    -0.0284,
+    -0.0112,
+    -0.042,
+    -0.0166,
+    -0.0701
+  ],
+  "max_abs_diff_vs_report": 0.013227958960695993,
+  "max_closed_loop_pole_magnitude_derived_K": 0.9745091872077838,
+  "max_closed_loop_pole_magnitude_report_K_on_derived_plant": 0.9745100510567561,
+  "note": "B scaled by ~0.79-0.80 reproduces eq. 25; cause not identified (see docs/results.md).",
+  "ratio_report_over_derived_row1": [
+    1.266,
+    1.256,
+    1.264,
+    1.258,
+    1.233
+  ]
+}
