@@ -1,0 +1,30 @@
+{
+  "kicks_rad_s": [
+    [
+      11.0,
+      1,
+      0.5
+    ],
+    [
+      13.0,
+      3,
+      -0.5
+    ]
+  ],
+  "max_angle_after_roll_kick_deg": 0.14156002515310506,
+  "max_angle_after_roll_kick_no_feedback_deg": 57.009300615516956,
+  "peak_abs_thrust_deviation_mN": 6.599007546289609,
+  "pitch_pulse": {
+    "overshoot_pct": 0.0,
+    "rise_time_s": 0.8500000000000005,
+    "settling_time_s": 1.5300000000000002
+  },
+  "pulse_deg": 10.0,
+  "roll_after_kick_end_lqr_deg": 3.594050705190534e-07,
+  "roll_after_kick_end_no_feedback_deg": 143.23944878270402,
+  "roll_pulse": {
+    "overshoot_pct": 0.0,
+    "rise_time_s": 0.8500000000000001,
+    "settling_time_s": 1.5300000000000002
+  }
+}
