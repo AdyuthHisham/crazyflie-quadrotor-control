@@ -1,0 +1,22 @@
+{
+  "accel_noise_m_s2": 0.1,
+  "c_sim_duration_s": 99.476,
+  "c_sim_max_abs_error_deg": {
+    "pitch": 2.9331929999999993,
+    "roll": 1.6723590000000002
+  },
+  "c_sim_rms_error_deg": {
+    "pitch": 0.7742235092460741,
+    "roll": 0.7100159468650363
+  },
+  "c_sim_rows": 1989,
+  "filter_period_s": 0.005,
+  "gamma_in_filter_c": 0.9991673605328892,
+  "gyro_bias_deg_s": 0.1,
+  "synthetic_rms_error_deg": {
+    "accel_only": 0.33798705734127954,
+    "fused_gamma_0p9": 0.07535468536591351,
+    "fused_gamma_0p9992": 0.390505143352578,
+    "gyro_only": 0.807251084905044
+  }
+}
