@@ -1,7 +1,7 @@
 # Crazyflie quadrotor: LQR attitude control and complementary filter
 
 > What is this project about?
-> Making a 27 g Crazyflie 2.1 hold its roll and pitch: model it, design a controller, estimate its attitude from an IMU, and run it as real-time C code. A four-person SSY191 course project (Chalmers). I took ownership of the complementary filter and was heavily involved in testing the code on the Crazyflie hardware.
+> Making a 27 g Crazyflie 2.1 hold its roll and pitch: model it, design a controller, estimate its attitude from an IMU, and run it as real-time C code. A four-person SSY191 course project (Chalmers).
 
 ![Animated 3D quadrotor following roll and pitch pulses in simulation, with roll and pitch traces beside it](media/hero.gif)
 
@@ -19,7 +19,7 @@
 README.md
 analysis/   Python scripts that regenerate every figure (+ data/ with a logged C simulation run)
 docs/       model notes (model.md), data sources and mismatches (results.md), metrics/*.json
-firmware/   our C files: filter.c/.h (mine), controller.c/.h (team)
+firmware/   our C files: filter.c/.h, controller.c/.h
 media/      figures and animations used here
 simulink/   public Crazyflie constants (params.m) and a note on the models
 ```
@@ -105,7 +105,7 @@ This regenerates every figure in `media/` and the numbers in `docs/metrics/*.jso
 
 ## Team Members
 
-Four students; I took ownership of the complementary filter (see above). Teammates are not named here.
+A four-person SSY191 group project.
 
 ## License
 
