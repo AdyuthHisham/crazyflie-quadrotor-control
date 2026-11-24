@@ -44,9 +44,15 @@ simulink/   public Crazyflie constants (params.m) and a note on the models
   ```
 
   It runs as a FreeRTOS task every 5 ms (`vTaskDelayUntil`), copies sensor data under `sensors_sem`, and writes the estimate under `estimate_sem` so the 100 Hz controller never reads a half-written value. Yaw is not estimated; the controller feeds back yaw rate only. Code: [`firmware/filter.c`](firmware/filter.c).
-- **Implementation.** Five C tasks (dynamic model, filter, controller, reference generator, logger) sharing state through binary semaphores.
+- **Implementation.** Five C tasks (dynamic model, filter, controller, reference generator, logger) sharing state through binary semaphores. The C was generated from MATLAB code with a MATLAB-to-C conversion plugin, not written by hand; the git log shows later fixes to the generated files (semaphore calls, task period, `vTaskDelayUntil`, filter constant).
 
 ![Architecture: a Simulink path from plant to Embedded Coder (not completed) to the Crazyflie, and a FreeRTOS path with dynamic model, filter, controller, reference and log tasks](media/architecture.svg)
+
+### What the course project did, and what this repo adds
+
+**The course project** (per the report and the git log of the course repositories): the Simscape model and its linearisation, the LQR design, the complementary filter and controller as C tasks (generated from MATLAB, then fixed in several commits), a run of the C simulation on a desktop, and a flight test on the Crazyflie whose roll oscillated. The Embedded Coder port was not completed.
+
+**This repo** (done afterwards, from the finished project): a Python re-implementation of the model and LQR to regenerate the figures, the closed-loop, pole and Q/R-sweep plots, a re-run of the C simulation to log filter data, the filter figure and animation, the hero animation, the architecture diagram, a check of the numbers against the report, and the documentation. None of these were part of the original submission.
 
 ## Our solutions
 
