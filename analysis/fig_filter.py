@@ -15,27 +15,10 @@ err_r = cs["estimated_roll"][sel] - cs["actual_roll"][sel]
 err_p = cs["estimated_pitch"][sel] - cs["actual_pitch"][sel]
 
 # (b) synthetic sensors on the Python closed-loop roll trajectory
-K, Ad, Bd = dlqr()
-s = simulate(K, Ad, Bd, 14.0, lambda t: (10.0 if 2 <= t < 8 else 0.0, 0.0))
-H = 0.005  # filter period in filter.c
-t = np.arange(0, 14, H)
-roll = np.interp(t, s["t"], s["roll"]); pitch = np.interp(t, s["t"], s["pitch"])
-dr = np.gradient(roll, H)  # deg/s
-BIAS, ACC_NOISE = 0.1, 0.1  # gyro bias (deg/s), accel noise (+-, m/s^2): same as the course dynamic model in main.c
-phi, th = np.radians(roll), np.radians(pitch)
-acc = 9.81 * np.stack([-np.sin(th), np.sin(phi) * np.cos(th), np.cos(phi) * np.cos(th)], 1) + rng.uniform(-ACC_NOISE, ACC_NOISE, (len(t), 3))
-gyro = dr + BIAS
-acc_roll = np.degrees(np.arctan2(acc[:, 1], acc[:, 2]))
+H, BIAS, ACC_NOISE = 0.005, 0.1, 0.1
+t, roll, acc_roll, gyro = synth_sensors(lambda t: (10.0 if 2 <= t < 8 else 0.0, 0.0), 14.0, H, BIAS, ACC_NOISE)
 gyro_int = np.cumsum(gyro) * H
-
-
-def fuse(gamma):
-    e = np.zeros(len(t))
-    for k in range(1, len(t)):
-        e[k] = (1 - gamma) * acc_roll[k] + gamma * (e[k - 1] + H * gyro[k])
-    return e
-
-f09, f0999 = fuse(0.9), fuse(6 / (H + 6))
+f09, f0999 = fuse(acc_roll, gyro, 0.9, H), fuse(acc_roll, gyro, 6 / (H + 6), H)
 rms = lambda x: float(np.sqrt(np.mean((x - roll) ** 2)))
 
 fig, (a, b) = plt.subplots(2, 1, figsize=(8, 7), gridspec_kw={"height_ratios": [1, 1.2]})

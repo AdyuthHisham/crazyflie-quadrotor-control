@@ -110,3 +110,24 @@ def style():
         "axes.spines.right": False, "font.size": 10, "axes.titlesize": 11, "axes.titleweight": "bold",
         "legend.frameon": False, "lines.linewidth": 1.8, "savefig.dpi": 150, "savefig.bbox": "tight",
     })
+
+
+def synth_sensors(ref, t_end, h=0.005, bias=0.1, acc_noise=0.1, seed=0):
+    """Synthetic IMU on the Python closed-loop trajectory, using the course simulator's sensor model
+    (main.c: 0.1 deg/s gyro bias, +-0.1 m/s^2 uniform accel noise). Returns t, true roll (deg), accel roll (deg), gyro roll rate (deg/s)."""
+    rng = np.random.default_rng(seed)
+    K, Ad, Bd = dlqr()
+    s = simulate(K, Ad, Bd, t_end, ref)
+    t = np.arange(0, t_end, h)
+    roll, pitch = np.interp(t, s["t"], s["roll"]), np.interp(t, s["t"], s["pitch"])
+    phi, th = np.radians(roll), np.radians(pitch)
+    acc = g * np.stack([-np.sin(th), np.sin(phi) * np.cos(th), np.cos(phi) * np.cos(th)], 1) + rng.uniform(-acc_noise, acc_noise, (len(t), 3))
+    return t, roll, np.degrees(np.arctan2(acc[:, 1], acc[:, 2])), np.gradient(roll, h) + bias
+
+
+def fuse(acc_roll, gyro, gamma, h=0.005):
+    """Complementary filter, same recursion as firmware/filter.c: e = (1-gamma) acc + gamma (e_prev + h gyro)."""
+    e = np.zeros(len(acc_roll))
+    for k in range(1, len(e)):
+        e[k] = (1 - gamma) * acc_roll[k] + gamma * (e[k - 1] + h * gyro[k])
+    return e
