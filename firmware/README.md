@@ -1,7 +1,7 @@
 # Firmware (C, FreeRTOS)
 
 Our files from the course project 5 repository (FreeRTOS tasks run on a desktop with the course's simulated Crazyflie).
-The C was generated from MATLAB code with a MATLAB-to-C conversion plugin (per the author) and then edited in the commits below; it was not written by hand. These files are **not a complete program**. `main.c`, the dynamic model, `constants.*`, `helpers.*`, the reference generator and the
+The C was generated from MATLAB code with a MATLAB-to-C conversion plugin and then fixed in later commits; it was not written by hand. These files are **not a complete program**. `main.c`, the dynamic model, `constants.*`, `helpers.*`, the reference generator and the
 FreeRTOS kernel (v9.0.0, GPL-2 with linking exception) come from the course template and are not included; the headers
 here only declare the parameter structs the template passes in.
 
