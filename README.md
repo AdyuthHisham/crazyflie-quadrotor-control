@@ -103,10 +103,6 @@ This regenerates every figure in `media/` and the numbers in `docs/metrics/*.jso
 - The C files need the course template and FreeRTOS to build ([`firmware/README.md`](firmware/README.md)). The logged simulation run is in `analysis/data/`.
 - Known numeric differences from the report (gain matrix, filter gamma) are listed in [`docs/results.md`](docs/results.md).
 
-## Team Members
-
-A four-person SSY191 group project.
-
 ## License
 
 None set; all rights reserved.
