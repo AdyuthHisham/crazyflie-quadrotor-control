@@ -99,7 +99,7 @@ This regenerates every figure in `media/` and the numbers in `docs/metrics/*.jso
 
 ## Team Members
 
-Anirudh Vinod Nair, Adyuth Hisham Babu Syed (me, complementary filter), Andreas Särnholm, David Mörck.
+Four students; I took ownership of the complementary filter (see above). Teammates are not named here.
 
 ## License
 
