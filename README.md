@@ -28,14 +28,14 @@ simulink/   public Crazyflie constants (params.m) and a note on the models
 
 1. **Model.** A quadrotor is nonlinear and coupled. We needed a model simple enough to design a controller on.
 2. **Control.** Hold roll and pitch, follow reference pulses and reject disturbances, with four motors as the only actuators.
-3. **Attitude estimate.** The accelerometer is noisy and the gyro drifts, and neither gives a usable angle alone. (my part)
+3. **Attitude estimate.** The accelerometer is noisy and the gyro drifts, and neither gives a usable angle alone.
 4. **Real-time implementation.** Sensors, filter, controller and references run at different rates and share data, so reads and writes must not collide.
 5. **Model to hardware.** Get the simulated controller running on the real drone.
 
 ## Approach we took
 
-- **Model and control (team).** A Simscape model of the thrust and torque from four rotors, linearised at hover into five states (roll, roll rate, pitch, pitch rate, yaw rate) with four thrust inputs. A discrete LQR with Q = diag(2, 0.3, 2, 0.3, 0.5) and R = I, tuned by trial in simulation. Details: [`docs/model.md`](docs/model.md).
-- **Estimation (mine).** A complementary filter: the gyro supplies the short-term motion, the accelerometer pins the long-term angle.
+- **Model and control.** A Simscape model of the thrust and torque from four rotors, linearised at hover into five states (roll, roll rate, pitch, pitch rate, yaw rate) with four thrust inputs. A discrete LQR with Q = diag(2, 0.3, 2, 0.3, 0.5) and R = I, tuned by trial in simulation. Details: [`docs/model.md`](docs/model.md).
+- **Estimation.** A complementary filter: the gyro supplies the short-term motion, the accelerometer pins the long-term angle.
 
   ```
   roll_acc  = atan2(a_y, a_z)
@@ -44,7 +44,7 @@ simulink/   public Crazyflie constants (params.m) and a note on the models
   ```
 
   It runs as a FreeRTOS task every 5 ms (`vTaskDelayUntil`), copies sensor data under `sensors_sem`, and writes the estimate under `estimate_sem` so the 100 Hz controller never reads a half-written value. Yaw is not estimated; the controller feeds back yaw rate only. Code: [`firmware/filter.c`](firmware/filter.c).
-- **Implementation (team, filter mine).** Five C tasks (dynamic model, filter, controller, reference generator, logger) sharing state through binary semaphores. I also took part in the hardware testing.
+- **Implementation.** Five C tasks (dynamic model, filter, controller, reference generator, logger) sharing state through binary semaphores.
 
 ![Architecture: a Simulink path from plant to Embedded Coder (not completed) to the Crazyflie, and a FreeRTOS path with dynamic model, filter, controller, reference and log tasks](media/architecture.svg)
 
