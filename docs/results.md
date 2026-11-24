@@ -40,7 +40,7 @@ What the figure shows, read by eye:
 The report names a battery on top of the frame (uneven weight) as a probable cause and says the battery drained
 unusually fast. It does not run an experiment to separate causes.
 
-<!-- TODO(owner): the report says the Embedded Coder translation could not be completed, and also describes flashing a controller for Fig. 7. State which firmware produced Fig. 7 (generated code, your_code.c, or the stock firmware with the Simulink gains). -->
+I do not remember which firmware produced Fig. 7, and the report does not say. The report says the Embedded Coder translation could not be completed, yet it also describes flashing a controller, so the two statements are left as written.
 
 ## Mismatches found while reproducing
 
@@ -49,7 +49,7 @@ unusually fast. It does not run an experiment to separate causes.
    Sign pattern is identical; magnitudes differ by 23-27 %. Scaling B by 0.79 (roll/pitch rows) and 0.80 (yaw row)
    reproduces eq. 25 to 8e-5, which suggests the Simscape-linearised B was about 20 % smaller than the hand-derived one.
    I found no physical reason for that factor, so the figures use the hand-derived B and say so.
-   <!-- TODO(owner): do you know what differed in the Simulink linearisation (units, thrust model, an extra gain)? -->
+   I do not remember what differed in the Simulink linearisation (units, thrust model or an extra gain), and the final model files are not available to check.
 2. **K in `controller.c` is a third set**, e.g. row 1 `[-0.0198 -0.0020 -0.0203 -0.0024 -0.0067]`. It was retuned in the C
    commits ("new Gain K"), and the rate and yaw-rate gains differ a lot from the report. The C code feeds `K` in
    radians and converts the result to PWM with `pwm_n`.

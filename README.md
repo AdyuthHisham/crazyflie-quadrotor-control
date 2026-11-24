@@ -19,7 +19,7 @@ in Python so the figures can be regenerated. It also says where the project fell
 
 ## My contribution vs. team
 
-<!-- TODO(owner): add what you did in the Simulink part, the report sections you wrote, and anything not visible in commits. -->
+My main ownership in the project was the complementary filter. I do not remember further details of my share of the Simulink work, so I claim nothing beyond the filter and the commits listed below.
 
 | Area | Mine | Team |
 |---|---|---|
@@ -78,7 +78,7 @@ equation in Python on synthetic sensors with a 0.1 deg/s gyro bias. The report c
 
 *Figure 7 of the project report, cropped. Not regenerated from data; I do not have the log.* Roll oscillates throughout, pitch is offset by about 30 deg, yaw drifts.
 The report points to the battery on top of the frame and says the C implementation could not be finished. No experiment separated the causes.
-<!-- TODO(owner): say which firmware produced this log. -->
+I do not remember which firmware produced this log, and the report does not say.
 
 ### Limitations and mismatches
 
@@ -131,7 +131,7 @@ The Simulink models are not included; see [`simulink/README.md`](simulink/README
 ## Acknowledgements
 
 - Chalmers SSY191 course staff for the template, the Crazyflie setup and the lecture notes.
-- Teammates: <!-- TODO(owner): list teammates by the names they have agreed to. -->
+- Teammates (report authors, in report order): Anirudh Vinod Nair, Adyuth Hisham Babu Syed, Andreas Särnholm, David Mörck.
 - Upstream: [Bitcraze Crazyflie firmware](https://github.com/bitcraze/crazyflie-firmware) (GPL-3.0, not included), [FreeRTOS kernel](https://github.com/FreeRTOS/FreeRTOS-Kernel) (not included), [python-control](https://github.com/python-control/python-control).
 - Project report: four authors, SSY191 Group 7, 2025. Not included in this repo.
 

@@ -19,4 +19,4 @@ block. Its linearisation is re-implemented in `analysis/common.py`.
 To use the course models yourself, open the template repository from the course, run `params.m`, then open
 `crazyflie.slx` in MATLAB with Simulink, Simscape and Embedded Coder.
 
-<!-- TODO(owner): if you still have your final .slx/.ssc and are happy to publish them, add them here. -->
+The final team `.slx` and `.ssc` files are no longer available to me, so they cannot be added.
