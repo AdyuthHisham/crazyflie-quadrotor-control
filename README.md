@@ -7,7 +7,7 @@
 
 *Attitude only, linearised model (Python re-implementation).*
 
-## TLDR (In brief)
+## TLDR
 
 - **Problem:** stabilise roll and pitch of a quadrotor and track reference changes, using only an accelerometer and a gyro for feedback.
 - **Approach:** a Simscape model linearised at hover, a discrete LQR (Ts = 0.01 s), a complementary filter for the angles, and FreeRTOS tasks in C.
